@@ -72,9 +72,9 @@
 
                     <div class="navbar-item">
                         <div class="navbar-item">
-                            <a href="login.html">Login</a>
+                            <a href="{{route('login')}}">Login</a>
                         </div>
-                        <a id="signup-button" href="signup.html" class="button is-cta is-solid primary-button raised">
+                        <a id="signup-button" href="{{route('register')}}" class="button is-cta is-solid primary-button raised">
                             Sign Up
                         </a>
                     </div>
