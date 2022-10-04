@@ -474,7 +474,7 @@
                 </div>
                 <div id="account-dropdown" class="navbar-item is-account drop-trigger has-caret">
                     <div class="user-image">
-                        <img src="" data-demo-src="assets/img/user-solid.svg"
+                        <img src="https://via.placeholder.com/400x400" data-demo-src="assets/img/avatars/jenna.png"
                             alt="">
                         <span class="indicator"></span>
                     </div>
@@ -594,15 +594,10 @@
                                         <div class="icon-wrap">
                                             <i data-feather="power"></i>
                                         </div>
-                                         <form method="POST" action="{{ route('logout') }}">
-                                         @csrf
-
                                         <div class="media-content">
-                                           <a style="font-size: 100%;" style="font-weight: normal;" href="route('logout')"> <h3 onclick="event.preventDefault();
-                                                this.closest('form').submit();">Logout</h3></a>
+                                            <h3>Log out</h3>
                                             <small>Log out from your account.</small>
                                         </div>
-                                    </form>
                                     </div>
                                 </a>
                             </div>
@@ -632,10 +627,10 @@
                             <a href="navbar-v2-feed.html">Feed</a>
                         </li>
                         <li>
-                            <a href="{{url('viewfriends')}}">Friends</a>
+                            <a href="navbar-v2-profile-friends.html">Friends</a>
                         </li>
                         <li>
-                            <a href="{{url('viewgroups')}}">Groups</a>
+                            <a href="navbar-v2-groups.html">Groups</a>
                         </li>
                         <li>
                             <a href="navbar-v2-ecommerce-products.html">Store</a>
@@ -1273,7 +1268,7 @@
                                     </div>
 
                                     <!-- Tab content -->
-                                    <form action="./post" method="POST" enctype="multipart/form-data">
+                                    <form action="{{url('add_post')}}" method="post" enctype="multipart/form-data">
                                         @csrf
                                         <div class="tab-content">
                                             <!-- Compose form -->
@@ -1297,22 +1292,25 @@
                                                     class="is-autocomplete is-suboption is-hidden">
                                                     <!-- Tag friends suboption -->
                                                     <div id="tag-list" class="tag-list"></div>
-                                                <div class="control">
-                                                    <input id="users-autocpl" name="tag" type="text" class="input" placeholder="Who are you with?">
-                                                    <div class="icon">
-                                                        <i data-feather="search"></i>
+                                                    <div class="control">
+                                                        <input id="users-autocpl" name="users" type="text" class="input"
+                                                            placeholder="Who are you with?">
+                                                        <div class="icon">
+                                                            <i data-feather="search"></i>
+                                                        </div>
+                                                        <div class="close-icon is-main">
+                                                            <i data-feather="x"></i>
+                                                        </div>
                                                     </div>
-                                                    <div class="close-icon is-main">
-                                                        <i data-feather="x"></i>
-                                                    </div>
-                                                </div>
                                                 </div>
                                                 <!-- /Tag friends suboption -->
 
                                                 <!-- Activities suboption -->
-                                                <div id="activities-suboption" class="is-autocomplete is-suboption is-hidden">
+                                                <div id="activities-suboption"
+                                                    class="is-autocomplete is-suboption is-hidden">
                                                     <div id="activities-autocpl-wrapper" class="control has-margin">
-                                                        <input id="activities-autocpl" name="activity" type="text" class="input" placeholder="What are you doing right now?">
+                                                        <input id="activities-autocpl" type="text" class="input" name="postcontent"
+                                                            placeholder="What are you doing right now?">
                                                         <div class="icon">
                                                             <i data-feather="search"></i>
                                                         </div>
@@ -1325,7 +1323,7 @@
                                                     <div id="mood-autocpl-wrapper"
                                                         class="is-autocomplete is-activity is-hidden">
                                                         <div class="control has-margin">
-                                                            <!-- <input id="mood-autocpl" name="postext" type="text" -->
+                                                            <input id="mood-autocpl" name="postext" type="text"
                                                                 class="input is-subactivity"
                                                                 placeholder="How do you feel?">
                                                             <div class="input-block">
@@ -1341,7 +1339,7 @@
                                                     <div id="drinking-autocpl-wrapper"
                                                         class="is-autocomplete is-activity is-hidden">
                                                         <div class="control has-margin">
-                                                            <!-- <input id="drinking-autocpl" type="text" name="drinking" -->
+                                                            <input id="drinking-autocpl" type="text" name="drinking"
                                                                 class="input is-subactivity"
                                                                 placeholder="What are you drinking?">
                                                             <div class="input-block">
@@ -1357,7 +1355,7 @@
                                                     <div id="eating-autocpl-wrapper"
                                                         class="is-autocomplete is-activity is-hidden">
                                                         <div class="control has-margin">
-                                                            <!-- <input id="eating-autocpl" name="eating" type="text" -->
+                                                            <input id="eating-autocpl" name="eating" type="text"
                                                                 class="input is-subactivity"
                                                                 placeholder="What are you eating?">
                                                             <div class="input-block">
@@ -1373,7 +1371,7 @@
                                                     <div id="reading-autocpl-wrapper"
                                                         class="is-autocomplete is-activity is-hidden">
                                                         <div class="control has-margin">
-                                                            <!-- <input id="reading-autocpl" name="reading" type="text" -->
+                                                            <input id="reading-autocpl" name="reading" type="text"
                                                                 class="input is-subactivity"
                                                                 placeholder="What are you reading?">
                                                             <div class="input-block">
@@ -1389,7 +1387,7 @@
                                                     <div id="watching-autocpl-wrapper"
                                                         class="is-autocomplete is-activity is-hidden">
                                                         <div class="control has-margin">
-                                                            <!-- <input id="watching-autocpl" name="watching" type="text" -->
+                                                            <input id="watching-autocpl" name="watching" type="text"
                                                                 class="input is-subactivity"
                                                                 placeholder="What are you watching?">
                                                             <div class="input-block">
@@ -1405,7 +1403,7 @@
                                                     <div id="travel-autocpl-wrapper"
                                                         class="is-autocomplete is-activity is-hidden">
                                                         <div class="control has-margin">
-                                                            <!-- <input id="travel-autocpl" name="going" type="text" -->
+                                                            <input id="travel-autocpl" name="going" type="text"
                                                                 class="input is-subactivity"
                                                                 placeholder="Where are you going?">
                                                             <div class="input-block">
@@ -1421,9 +1419,12 @@
                                                 <!-- /Activities suboption -->
 
                                                 <!-- Location suboption -->
-                                                <div id="location-suboption" class="is-autocomplete is-suboption is-hidden">
-                                                    <div id="location-autocpl-wrapper" class="control is-location-wrapper has-margin">
-                                                        <input id="location-autocpl" name="location" type="text" class="input" placeholder="Where are you now?">
+                                                <div id="location-suboption"
+                                                    class="is-autocomplete is-suboption is-hidden">
+                                                    <div id="location-autocpl-wrapper"
+                                                        class="control is-location-wrapper has-margin">
+                                                        <input id="location-autocpl" type="text" name="now" class="input"
+                                                            placeholder="Where are you now?">
                                                         <div class="icon">
                                                             <i data-feather="map-pin"></i>
                                                         </div>
@@ -1434,9 +1435,12 @@
                                                 </div>
 
                                                 <!-- Link suboption -->
-                                                <div id="link-suboption" class="is-autocomplete is-suboption is-hidden">
-                                                    <div id="link-autocpl-wrapper" class="control is-location-wrapper has-margin">
-                                                        <input id="link-autocpl" name="sharelink" type="text" class="input" placeholder="Enter the link URL">
+                                                <div id="link-suboption"
+                                                    class="is-autocomplete is-suboption is-hidden">
+                                                    <div id="link-autocpl-wrapper"
+                                                        class="control is-location-wrapper has-margin">
+                                                        <input id="link-autocpl" type="text" name="url" class="input"
+                                                            placeholder="Enter the link URL">
                                                         <div class="icon">
                                                             <i data-feather="link-2"></i>
                                                         </div>
@@ -1447,9 +1451,12 @@
                                                 </div>
 
                                                 <!-- GIF suboption -->
-                                                <div id="gif-suboption" class="is-autocomplete is-suboption is-hidden">
-                                                    <div id="gif-autocpl-wrapper" class="control is-gif-wrapper has-margin">
-                                                        <input id="gif-autocpl" name="gif" type="text" class="input" placeholder="Search a GIF to add" autofocus>
+                                                <div id="gif-suboption"
+                                                    class="is-autocomplete is-suboption is-hidden">
+                                                    <div id="gif-autocpl-wrapper"
+                                                        class="control is-gif-wrapper has-margin">
+                                                        <input id="gif-autocpl" type="text" name="GIF" class="input"
+                                                            placeholder="Search a GIF to add" autofocus>
                                                         <div class="icon">
                                                             <i data-feather="search"></i>
                                                         </div>
@@ -1459,22 +1466,46 @@
                                                         <div class="gif-dropdown">
                                                             <div class="inner">
                                                                 <div class="gif-block">
-                                                                    <img src="https://via.placeholder.com/478x344" data-demo-src="assets/img/demo/gif/1.gif" alt="">
-                                                                    <img src="https://via.placeholder.com/478x344" data-demo-src="assets/img/demo/gif/2.gif" alt="">
-                                                                    <img src="https://via.placeholder.com/478x344" data-demo-src="assets/img/demo/gif/3.gif" alt="">
-                                                                    <img src="https://via.placeholder.com/478x344" data-demo-src="assets/img/demo/gif/4.gif" alt="">
+                                                                    <img src="https://via.placeholder.com/478x344"
+                                                                        data-demo-src="assets/img/demo/gif/1.gif"
+                                                                        alt="">
+                                                                    <img src="https://via.placeholder.com/478x344"
+                                                                        data-demo-src="assets/img/demo/gif/2.gif"
+                                                                        alt="">
+                                                                    <img src="https://via.placeholder.com/478x344"
+                                                                        data-demo-src="assets/img/demo/gif/3.gif"
+                                                                        alt="">
+                                                                    <img src="https://via.placeholder.com/478x344"
+                                                                        data-demo-src="assets/img/demo/gif/4.gif"
+                                                                        alt="">
                                                                 </div>
                                                                 <div class="gif-block">
-                                                                    <img src="https://via.placeholder.com/478x344" data-demo-src="assets/img/demo/gif/5.gif" alt="">
-                                                                    <img src="https://via.placeholder.com/478x344" data-demo-src="assets/img/demo/gif/6.gif" alt="">
-                                                                    <img src="https://via.placeholder.com/478x344" data-demo-src="assets/img/demo/gif/7.gif" alt="">
-                                                                    <img src="https://via.placeholder.com/478x344" data-demo-src="assets/img/demo/gif/8.gif" alt="">
+                                                                    <img src="https://via.placeholder.com/478x344"
+                                                                        data-demo-src="assets/img/demo/gif/5.gif"
+                                                                        alt="">
+                                                                    <img src="https://via.placeholder.com/478x344"
+                                                                        data-demo-src="assets/img/demo/gif/6.gif"
+                                                                        alt="">
+                                                                    <img src="https://via.placeholder.com/478x344"
+                                                                        data-demo-src="assets/img/demo/gif/7.gif"
+                                                                        alt="">
+                                                                    <img src="https://via.placeholder.com/478x344"
+                                                                        data-demo-src="assets/img/demo/gif/8.gif"
+                                                                        alt="">
                                                                 </div>
                                                                 <div class="gif-block">
-                                                                    <img src="https://via.placeholder.com/478x344" data-demo-src="assets/img/demo/gif/9.gif" alt="">
-                                                                    <img src="https://via.placeholder.com/478x344" data-demo-src="assets/img/demo/gif/10.gif" alt="">
-                                                                    <img src="https://via.placeholder.com/478x344" data-demo-src="assets/img/demo/gif/11.gif" alt="">
-                                                                    <img src="https://via.placeholder.com/478x344" data-demo-src="assets/img/demo/gif/12.gif" alt="">
+                                                                    <img src="https://via.placeholder.com/478x344"
+                                                                        data-demo-src="assets/img/demo/gif/9.gif"
+                                                                        alt="">
+                                                                    <img src="https://via.placeholder.com/478x344"
+                                                                        data-demo-src="assets/img/demo/gif/10.gif"
+                                                                        alt="">
+                                                                    <img src="https://via.placeholder.com/478x344"
+                                                                        data-demo-src="assets/img/demo/gif/11.gif"
+                                                                        alt="">
+                                                                    <img src="https://via.placeholder.com/478x344"
+                                                                        data-demo-src="assets/img/demo/gif/12.gif"
+                                                                        alt="">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1491,7 +1522,8 @@
                                                         <div class="compose-option is-centered">
                                                             <i data-feather="camera"></i>
                                                             <span>Photo/Video</span>
-                                                            <input id="feed-upload-input-1" name="photo_video" type="file">
+                                                            <input id="feed-upload-input-1" name="text_back_ground" type="file"
+                                                                accept=".png, .jpg, .jpeg" onchange="readURL(this)">
                                                         </div>
                                                     </div>
                                                     <!-- Mood action -->
@@ -1505,7 +1537,8 @@
                                                     </div>
                                                     <!-- Tag friends action -->
                                                     <div class="column is-6 is-narrower">
-                                                        <div id="open-tag-suboption" class="compose-option is-centered">
+                                                        <div id="open-tag-suboption"
+                                                            class="compose-option is-centered">
                                                             <i data-feather="tag"></i>
                                                             <span>Tag friends</span>
                                                         </div>
@@ -1544,8 +1577,8 @@
                                                 <div class="compose-option">
                                                     <i data-feather="camera"></i>
                                                     <span>Media</span>
-                                                    <input type="file" id="input-file-now-custom-3" name="cover">
-                                    
+                                                    <input id="feed-upload-input-2" type="file" name="media" type="file"
+                                                        accept=".png, .jpg, .jpeg" onchange="readURL(this)">
                                                 </div>
                                                 <!-- Mood action -->
                                                 <div id="show-activities" class="compose-option">
@@ -5367,10 +5400,9 @@
                 <div class="card">
                     <div class="card-heading">
                         <h3>New album</h3>
-                        <div class="button is-solid accent-button">
+                        <div class="button is-solid accent-button fileinput-button">
                             <i class="mdi mdi-plus"></i>
-                            <input type="file" value="Add pictures/videos" class="addpicture" readonly name="[]" id="">
-                            
+                            Add pictures/videos
                         </div>
 
                         <!-- Close X button -->
@@ -5391,7 +5423,7 @@
                                     </div>
                                 </div>
                                 <div class="control">
-                                    <input class="textarea is-fade no-radius is-sm" rows="3" placeholder="describe your album ..."/>
+                                    <textarea class="textarea is-fade no-radius is-sm" rows="3" placeholder="describe your album ..."></textarea>
                                 </div>
                                 <div class="control">
                                     <input type="text" class="input is-sm no-radius is-fade"
@@ -8176,17 +8208,6 @@
     <script src="assets/js/webcam.js"></script>
     <script src="assets/js/compose.js"></script>
     <script src="assets/js/autocompletes.js"></script>
-    <script>
-        $(document).ready(function(){
-
-            $('.addpicture').click(function(){
-                $images=[];
-                console.log('fdcx');
-                
-            });
-
-        });
-    </script>
 
     <!-- profile js -->
 
