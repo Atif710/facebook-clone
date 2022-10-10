@@ -23,7 +23,7 @@ class FeedController extends Controller
         // }
         $comment  = Comment::all();
         
-        $feed = Feed::select('mstpost.*','mstuser.*')->join('mstuser','mstpost.userId','=','mstuser.userId')->take(5)->get();
+        $feed = Feed::select('mstposts.*','mstuser.*')->join('mstuser','mstposts.userId','=','mstuser.userId')->take(5)->get();
         // $user = User::all()->where('id','=',$getFeedID);
         return view('front.index', compact('feed', 'comment'));
     }
@@ -51,59 +51,11 @@ class FeedController extends Controller
         return redirect()->back();
     }
 
-    public function like(Request $request){
-        $like = new Trnlike;
-        if ( $like->postlike = $request->postlike == 'like') {
-           
-            $like->like = 1;
-           
-        }else{
-            $like->dislike = 1;
-        }
+    public function add_like($postid,$like){
 
-        $like->save();
-
-        return redirect()->back();
-
+       return json_encode(array($postid,$like));
+    
+         
     }
 
-
-
-    // public function add_post(Request $request)
-    // {
-
-
-    //     dd($request);
-    //     $user = Auth::user();
-    //     $userid = $user->id;
-    //     $user = User::where('id', '=', $userid)->get();
-
-    //     $feed = new Feed;
-
-    //     $validatedData = $request->validate([
-    //         'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
-
-    //     ]);
-
-    //     $name = $request->file('image')->getClientOriginalName();
-
-    //     $path = $request->file('image')->store('public/product');
-
-
-    //     $save = new Feed();
-
-    //     $save->name = $name;
-    //     $save->path = $path;
-
-
-
-    //     $feed->userid = $request->userid;
-
-    //     $feed->caption = $request->caption;
-    //     $feed->postcontent = $request->postcontent;
-    //     $feed->postContentText = $request->users;
-    //     $feed->image = $request->name;
-    //     $feed->save();
-    //     return redirect()->back();
-    // }
 }

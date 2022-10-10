@@ -12,7 +12,6 @@ class Trnlike extends Model
     public $timestamps = false;
     protected $table = 'trnlikes';
     protected $fillable = [
-        'pushLikeId',
         'postlike',
         'userId',
         'postId',

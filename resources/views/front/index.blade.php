@@ -8,10 +8,11 @@
 
 <head>
     <!-- Required meta tags -->
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <title> Friendkit | Main Feed</title>
     <link rel="icon" type="image/png" href="assets/img/favicon.png" />
 
@@ -1942,15 +1943,23 @@
                                                 <!-- Action buttons -->
                                                 <!-- /partials/pages/feed/buttons/feed-post-actions.html -->
                                                 <div class="like-wrapper">
-                                                    <form action="{{url('feed')}}" method="post">
-                                                      @csrf
-                                                      <input type="hidden" name="postlike">
-                                                      <a href="javascript:void(0);" data-type="like" title="Likes" id ="saveLikes" class="like-button like-count">
-                                                    </form>
-                                                        <i class="mdi mdi-heart not-liked bouncy"></i>
-                                                        <i class="mdi mdi-heart is-liked bouncy"></i>
-                                                        <span class="like-overlay"></span>
-                                                    </a>
+                                                        <a href="javascript:void(0);" data-type="like" title="Likes" id="{{$fed->Id}}" class="like-button like-count">
+                                                            <i class="mdi mdi-heart not-liked bouncy"></i>
+                                                            <i class="mdi mdi-heart is-liked bouncy"></i>
+                                                            <span class="like-overlay"></span>
+                                                        </a>
+                                                        <script>
+                                                            var testBool{{$fed->Id}} = false;
+                                                           $("document").ready(function(){
+                                                                $("#{{$fed->Id}}").click(function(){
+                                                                    // alert("#{{$fed->Id}}");
+                                                                    testBool{{$fed->Id}} = !testBool{{$fed->Id}};
+                                                                    $trueFalse{{$fed->Id}} = testBool{{$fed->Id}};
+                                                                    likeToggle({{$fed->Id}}, $trueFalse{{$fed->Id}});
+                                                                });
+                                                           });
+                                                           
+                                                        </script>
                                                 </div>
 
                                                 <div class="fab-wrapper is-share">
@@ -6006,35 +6015,34 @@
 
   
     <script>
-        $document.on('click','#saveLikes',function(){
-            var _post = $(this).data('post');
-            var _type = $(this).data('type');
-            var vm = $(this);
-
+      function likeToggle(postid,bool){
+            $postId = postid;
+            $boolAns = bool;
+            if($boolAns == false){
+                $val1 = 0;
+            }else{
+                $val1 = 1;
+            }
             $.ajax({
-                url:"{{url('feed')}}",
-                type:"post",
-                dataType:"json",
-                data:{
-                    post:_post,
-                    type:_type,
-                    _token:"{{csrf_token() }}"
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                beforeSend:function(){
-                    vm.addClass('disabled');
+                method:'POST',
+                url:'http://localhost/social/public/add_like'+'/'+$postId+'/'+$boolAns,
+                dataType:'json',
+                data:{
+                    PostId : $postId,
+                    BoolAns : $val1
                 },
                 success:function(res){
-                    if(res.bool==true){
-                        vm.removeClass('diabled').addClass('active');
-                        vm.removeAttr('id');
-
-                        var _prevCount = $(","+_type+"-count").text();
-                        _prevCount++;
-                        $(","+type"-count").text(_prevCount);
-                    }
+                    console.log(res);
+                },
+                error:function(res){
+                    console.log(res);
                 }
+                
             });
-        });
+      }
     </script>
 </body>
 

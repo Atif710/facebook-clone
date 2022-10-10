@@ -15,7 +15,7 @@ class Feed extends Model
         return $this->hasMany('App\Models\Like', 'postId')->sum();
     }
     public $timestamps = false;
-    protected $table = 'mstpost';
+    protected $table = 'mstposts';
     protected $fillable = [
         'isBusiness',
         'groupld',
